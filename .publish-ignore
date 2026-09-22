@@ -1,0 +1,19 @@
+# 上传到 GitHub 时排除的路径（一行一个，# 是注释，支持通配符）
+# 由助手 2026-09-22 添加。
+#
+# 排除原因（Blender 工程与 3D 导出）：
+#   11 个 .blend 是 Blender 源工程，单个 91~139MB，全部超过 GitHub 单文件 100MB 硬上限；
+#   11 个 .glb  是同一把同心锁的反复迭代导出（final / final - 副本 / fixed / corrected /
+#   pbr / pbr_v2 / web_safe_gold / with_material / original_texture / textured …），
+#   合计约 510MB，其中只有 concentric_lock_copper_gold.glb 被 demo 真正引用。
+#   ⇒ 只保留 demo 自己那份，根目录那份重复副本排除。
+#
+# 排除原因（压缩包）：
+#   *.zip 是打包产物（原型源码包 37.6MB、文档合集 4.2MB、分享包 4.3MB），源码都已在库里。
+#
+# 要留档的 3D 源文件建议单独存网盘或走 GitHub Release，不要塞进代码库。
+*.blend
+*.blend1
+*.glb
+!/缘境登录页/public/assets/concentric_lock_copper_gold.glb
+*.zip

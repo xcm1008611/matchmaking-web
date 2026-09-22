@@ -1,0 +1,184 @@
+/* 阿里 / 苹果级现代新中式设计系统全局动效与样式 */
+
+:root {
+  /* 品牌核心色彩 - 新中式唯美朱砂与暖玉 */
+  --color-primary: #9b1c2e;
+  --color-primary-hover: #b82337;
+  --color-primary-light: #fdf2f4;
+  --color-primary-dark: #6e101d;
+  --color-primary-active: #801423;
+
+  /* 兼容与别名定义（确保客户端各子组件变量解析绝对正常） */
+  --color-crimson: #9b1c2e;
+  --color-crimson-hover: #b82337;
+  --color-crimson-light: #fdf2f4;
+  --color-crimson-dark: #6e101d;
+  
+  --color-gold: #c5a059;
+  --color-gold-light: #fcf8ee;
+  --color-gold-dark: #8c6a2b;
+  --color-accent-gold: #c5a059;
+  --color-accent-gold-light: #fcf8ee;
+  
+  --color-jade: #2d7a6e;
+  --color-jade-light: #eef7f5;
+  
+  --color-bg-base: #f7f8fa;
+  --color-bg-card: rgba(255, 255, 255, 0.85);
+  --color-bg-pure: #ffffff;
+  
+  --color-text-main: #1d1d1f;
+  --color-text-regular: #48484a;
+  --color-text-secondary: #86868b;
+  --color-text-light: #aeaebe;
+
+  --color-ink: #1d1d1f;
+  --color-ink-muted: #86868b;
+  
+  --color-border: #e5e5ea;
+  --color-border-base: #e5e5ea;
+  --color-border-light: #f2f2f7;
+  
+  /* 苹果级物理缓动曲线 */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 阴影系统 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(155, 28, 46, 0.15);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.05);
+  --shadow-floating: 0 16px 36px rgba(0, 0, 0, 0.08);
+
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  
+  /* 字体族 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-song: "Noto Serif SC", "Songti SC", "SimSun", "STSong", serif;
+  --font-kai: "Kaiti SC", "KaiTi", "STKaiti", serif;
+  --font-display: "Noto Serif SC", "Songti SC", "SimSun", "STSong", serif;
+}
+
+/* 基础重置 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 苹果级通用交错入场动效 */
+@keyframes appleFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes appleFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-up {
+  animation: appleFadeUp 0.8s var(--ease-apple) both;
+}
+
+.animate-stagger-1 { animation: appleFadeUp 0.7s var(--ease-apple) 0.05s both; }
+.animate-stagger-2 { animation: appleFadeUp 0.7s var(--ease-apple) 0.12s both; }
+.animate-stagger-3 { animation: appleFadeUp 0.7s var(--ease-apple) 0.19s both; }
+.animate-stagger-4 { animation: appleFadeUp 0.7s var(--ease-apple) 0.26s both; }
+.animate-stagger-5 { animation: appleFadeUp 0.7s var(--ease-apple) 0.33s both; }
+.animate-stagger-6 { animation: appleFadeUp 0.7s var(--ease-apple) 0.40s both; }
+
+/* 苹果级玻璃拟态卡片 */
+.apple-glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s var(--ease-apple);
+}
+
+.apple-glass-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(155, 28, 46, 0.15);
+}
+
+/* 按钮微动效与反馈 */
+button, .el-button {
+  transition: all 0.3s var(--ease-apple) !important;
+}
+
+button:active, .el-button:active {
+  transform: scale(0.96) !important;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
